@@ -1,0 +1,17 @@
+FROM node:20
+
+WORKDIR /backend
+
+COPY package.json ./
+
+RUN npm install --omit=dev
+
+COPY . .
+
+FROM node:20-alpine
+
+WORKDIR /backend
+
+COPY --from=0 /backend ./
+
+CMD ["npm", "start"]

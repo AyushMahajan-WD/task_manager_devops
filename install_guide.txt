@@ -1,0 +1,88 @@
+PERN Task Manager – Install Guide
+=================================
+
+Requirements
+------------
+- Node.js 18+ and npm
+- PostgreSQL 13+
+- (Optional) pnpm or yarn
+
+Project Structure
+-----------------
+pern-task-manager/
+  backend/        # Node + Express API, migrations, seeds
+  frontend/       # React + Vite + Tailwind app
+  install_guide.txt
+
+Backend Setup (Development)
+---------------------------
+1) Create a `.env` in `backend/` based on `.env.example`. Example:
+   NODE_ENV=development
+   PORT=4000
+   PGHOST=localhost
+   PGPORT=5432
+   PGDATABASE=pern_task_manager
+   PGUSER=postgres
+   PGPASSWORD=postgres
+   ALLOWED_HOSTS=localhost,127.0.0.1,example.com
+
+2) Install deps and run migrations/seeds:
+   cd backend
+   npm install
+   npm run migrate
+   npm run seed
+
+3) Start dev server:
+   npm run dev 
+   # API at http://localhost:4000
+   # Health: GET /health
+   # Projects: /api/projects
+   # Tasks:    /api/tasks 
+
+Multi-Host / Subdomains
+-----------------------
+- Configure ALLOWED_HOSTS with a comma-separated list, e.g.:
+  ALLOWED_HOSTS=localhost,example.com,xyz.example.com,abc.example.com
+- If you include the base domain (example.com), any subdomain like foo.example.com is accepted.
+- You can also use wildcard notation in code by setting: ALLOWED_HOSTS=*.example.com,example.com
+  (the middleware already treats 'example.com' as allowing subdomains).
+
+Production (Backend)
+--------------------
+- Set NODE_ENV=production and appropriate PG* variables.
+- If using a managed Postgres that requires SSL, set PGSSL=true.
+- Install and start:
+   cd backend
+   npm install --omit=dev
+   npm start
+
+Frontend Setup (Development)
+----------------------------
+1) Configure API URL in `frontend/.env.development` (default http://localhost:4000).
+2) Install deps and run:
+   cd frontend
+   npm install
+   npm run dev
+   # App at http://localhost:5173
+
+Production (Frontend)
+---------------------
+1) Set API URL in `frontend/.env.production` (e.g., https://api.example.com).
+2) Build and preview locally:
+   cd frontend
+   npm install
+   npm run build
+   npm run preview
+
+Tailwind & Assets
+-----------------
+- Tailwind is preconfigured; styles live in `src/index.css`.
+- Navbar uses `/public/assets/logo.png` and `/public/assets/banner.jpg` placeholders.
+
+Notes
+-----
+- No Docker/Kubernetes files are included yet as requested.
+- Postgres schema is managed with SQL files in `backend/migrations`.
+- Basic CRUD implemented for Projects and Tasks with cascading delete.
+
+docker run -d   --name postgres-db   -e POSTGRES_USER=postgres   -e POSTGRES_PASSWORD=postgres   -e POSTGRES_DB=pern_task_manager   -p 5432:5432   --network mynet   postgres:15
