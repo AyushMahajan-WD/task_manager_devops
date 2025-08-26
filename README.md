@@ -13,14 +13,14 @@ pern-task-manager/
 
 Backend Setup
 ---------------------------
-1) <ls>NODE_ENV: production<ls>
-   port: "4000"
-   PGHOST: db-service.default.svc.cluster.local
-   PGPORT: "5432"
-   PGDATABASE: pern_task_manager
-   PGUSER: postgres
-   PGPASSWORD: postgres
-   ALLOWED_HOSTS: localhost,127.0.0.1,taskmanager.local, <public_ip>,<dns>
+1) <ls>NODE_ENV: production</ls>
+   port: "4000"    
+   PGHOST: db-service.default.svc.cluster.local      
+   PGPORT: "5432"    
+   PGDATABASE: pern_task_manager    
+   PGUSER: postgres    
+   PGPASSWORD: postgres    
+   ALLOWED_HOSTS: localhost,127.0.0.1,taskmanager.local, <public_ip>,<dns>    
 
 
 Frontend Setup
