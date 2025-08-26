@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: db-deployment
+  labels:
+    app: db
+spec:
+  template:
+    metadata:
+      name: db-pod
+      labels:
+        app: db
+    spec: 
+      containers:
+      - name: db-container
+        image: postgres:15
+        ports:
+        - containerPort: 5432 
+        envFrom:
+          - configMapRef:
+              name: db-config
+        volumeMounts: 
+          - name: init-sql
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: init-sql
+        configMap:
+          name: postgres-init-sql
+
+    
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1

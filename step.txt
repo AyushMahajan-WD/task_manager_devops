@@ -1,0 +1,9 @@
+In this stack when app is load and user give some data then browser directly call backend on VITE APi URL to connect with DB, So we cannot use internal port for backend,
+we have to use nodeport for backend and frontend both. As in this app the frontend serve differenty and backend serve differently so when user give input to froent then frontend 
+try to backend through browser only, So we resolve this we need to serve frontend by backend so they do internal comm and only external port requires.
+
+
+In VITE api URL is buildtime URL so it does not take values after builing the image so it will always take fallback value.
+If we don't specify both fallback and Vite api URl in env then webapp will not fetch URL as at build time it will stay as undefine.
+
+To resolve this I have hardcoded nodePort in api.js file.

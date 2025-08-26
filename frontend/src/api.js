@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://129.154.247.171/:4000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://129.154.247.171:30001';
 
 async function http(method, path, body) {
   const res = await fetch(`${API_URL}${path}`, {

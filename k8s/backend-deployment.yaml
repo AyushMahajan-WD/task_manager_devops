@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend
+    spec: 
+      dnsPolicy: ClusterFirst
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "5"
+      containers:
+      - name: backend-container
+        image: ayush966/task-manager:backend-2.0
+        ports:
+        - containerPort: 4000
+        envFrom:
+          - configMapRef:
+              name: backend-config
+      - name: dns-test
+        image: busybox:1.28
+        command: ['sleep', '3600']
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: RollingUpdate
+  

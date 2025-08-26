@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  template:
+    metadata:
+      name: frontend-pod
+      labels:
+        app: frontend
+    spec: 
+      containers:
+      - name: frontend-container
+        image: ayush966/task-manager:frontend-fixed
+        ports:
+        - containerPort: 80 
+        env:
+        - name: VITE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: frontend-config
+              key: VITE_API_URL
+  replicas: 3
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
