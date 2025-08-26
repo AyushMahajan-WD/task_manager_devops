@@ -13,7 +13,7 @@ pern-task-manager/
 
 Backend Setup
 ---------------------------
-1) <ls>NODE_ENV: production</ls>
+ <ls>NODE_ENV: production</ls>
    port: "4000"    
    PGHOST: db-service.default.svc.cluster.local      
    PGPORT: "5432"    
@@ -25,4 +25,4 @@ Backend Setup
 
 Frontend Setup
 ----------------------------
-1) VITE_API_URL: "http://129.154.247.171:30001"
+  VITE_API_URL: "http://129.154.247.171:30001"
