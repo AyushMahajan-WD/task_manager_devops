@@ -6,10 +6,10 @@ PERN Task Manager – Install Guide
 Project Structure
 -----------------
 pern-task-manager/
-  <ls>backend/        #Contains Dockerfile and source code for backend
+  <ls>backend/        #Contains Dockerfile and source code for backend</ls>
   frontend/       #Contains Dockerfile and source code for frontend
   k8s/            #Contains k8s defination files
-  README.md       #Containes all the info about applicaton </ls>
+  README.md       #Containes all the info about applicaton
 
 Backend Setup
 ---------------------------
