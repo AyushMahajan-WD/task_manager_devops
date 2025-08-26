@@ -13,7 +13,7 @@ pern-task-manager/
 
 Backend Setup
 ---------------------------
-1) NODE_ENV: production
+1) <ls>NODE_ENV: production<ls>
    port: "4000"
    PGHOST: db-service.default.svc.cluster.local
    PGPORT: "5432"
