@@ -25,4 +25,4 @@ Backend Setup
 
 Frontend Setup
 ----------------------------
-  VITE_API_URL: "http://129.154.247.171:30001"
+  VITE_API_URL: "http://PIP:NodePort"
